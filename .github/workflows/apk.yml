@@ -1,0 +1,35 @@
+name: APK مباشر
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Create Android files
+        run: flutter create . --platforms=android
+
+      - name: Get packages
+        run: flutter pub get
+
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Upload APK to Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: debug-apk
+          name: Archivi Debug APK
+          prerelease: true
+          files: build/app/outputs/flutter-apk/app-debug.apk
