@@ -44,6 +44,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-sqlite",
       [
         "expo-splash-screen",
         {
@@ -58,6 +59,12 @@
         {
           "photosPermission": "السماح بالوصول إلى معرض الصور لاختيار الوثائق",
           "cameraPermission": "السماح باستخدام الكاميرا لالتقاط صور الوثائق"
+        }
+      ],
+      [
+        "@react-native-ml-kit/text-recognition",
+        {
+          "textRecognitionPermission": "السماح باستخراج النصوص من الصور باستخدام الذكاء الاصطناعي المحلي"
         }
       ]
     ],
