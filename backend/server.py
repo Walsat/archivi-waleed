@@ -445,8 +445,8 @@ async def get_statistics():
         ]
         categories = await db.documents.aggregate(pipeline).to_list(100)
         
-        # Get recent documents
-        recent_docs = await db.documents.find().sort('created_at', -1).limit(5).to_list(5)
+        # Get recent documents (exclude large file_data field)
+        recent_docs = await db.documents.find({}, {'file_data': 0}).sort('created_at', -1).limit(5).to_list(5)
         
         return {
             "total_documents": total_documents,
