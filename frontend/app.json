@@ -1,21 +1,40 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "نظام الأرشفة الإلكترونية",
+    "slug": "salah-aldin-archive",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "frontend",
+    "scheme": "salah-aldin-archive",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4CAF50"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.salahaldin.archive",
+      "infoPlist": {
+        "NSCameraUsageDescription": "السماح بالتقاط صور الوثائق",
+        "NSPhotoLibraryUsageDescription": "اختيار صور من المعرض",
+        "NSPhotoLibraryAddUsageDescription": "حفظ الصور"
+      }
     },
     "android": {
+      "package": "com.salahaldin.archive",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000"
+        "backgroundColor": "#4CAF50"
       },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES"
+      ],
       "edgeToEdgeEnabled": true
     },
     "web": {
@@ -31,12 +50,24 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#000"
+          "backgroundColor": "#4CAF50"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "السماح بالوصول إلى معرض الصور لاختيار الوثائق",
+          "cameraPermission": "السماح باستخدام الكاميرا لالتقاط صور الوثائق"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
     }
   }
 }
