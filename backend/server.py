@@ -362,7 +362,8 @@ async def get_documents(
     if land_type:
         query['land_type'] = land_type
     
-    documents = await db.documents.find(query).sort('created_at', -1).limit(limit).to_list(limit)
+    # Exclude large file_data field for performance
+    documents = await db.documents.find(query, {'file_data': 0}).sort('created_at', -1).limit(limit).to_list(limit)
     return [Document(**doc) for doc in documents]
 
 @api_router.get("/documents/{document_id}", response_model=Document)
