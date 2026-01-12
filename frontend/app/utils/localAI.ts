@@ -15,14 +15,15 @@ export const extractTextFromImage = async (imageUri: string): Promise<string> =>
 export const classifyDocument = (text: string, title: string): string => {
   const lowerText = text.toLowerCase() + ' ' + title.toLowerCase();
   
-  // Define classification patterns
+  // Define classification patterns for government departments
   const patterns = {
-    'سند ملكية': ['سند', 'ملكية', 'تمليك', 'عقار', 'أرض', 'property', 'ownership'],
-    'عقد إيجار': ['إيجار', 'استئجار', 'مستأجر', 'rent', 'lease', 'tenant'],
-    'خريطة مساحية': ['خريطة', 'مساحة', 'حدود', 'قطعة', 'survey', 'map', 'plot'],
-    'تقرير فني': ['تقرير', 'فني', 'دراسة', 'فحص', 'technical', 'report', 'inspection'],
-    'طلب خدمة': ['طلب', 'خدمة', 'استمارة', 'نموذج', 'application', 'request', 'form'],
-    'شهادة': ['شهادة', 'certificate', 'certification', 'document'],
+    'كتب الوزارة': ['وزارة', 'الوزير', 'وزاري', 'ministry', 'ministerial', 'معالي'],
+    'كتب المحافظة': ['محافظة', 'محافظ', 'governorate', 'governor', 'المحافظ'],
+    'كتب الشعب الزراعية': ['شعبة', 'شعب', 'زراعية', 'agricultural', 'division', 'فلاحة'],
+    'كتب دائرة الأراضي': ['دائرة', 'أراضي', 'land', 'department', 'عقار', 'ملكية'],
+    'كتب الشكاوي': ['شكوى', 'شكاوى', 'تظلم', 'اعتراض', 'complaint', 'grievance'],
+    'كتب النزاهة': ['نزاهة', 'فساد', 'integrity', 'corruption', 'هيئة النزاهة'],
+    'كتب المحاكم': ['محكمة', 'قضاء', 'قاضي', 'court', 'judicial', 'حكم'],
   };
 
   let maxScore = 0;
