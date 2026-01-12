@@ -270,8 +270,11 @@ async def smart_search(query: str, filters: dict) -> List[dict]:
                 {'keywords': {'$regex': query, '$options': 'i'}},
             ]
         
-        # Execute search
-        documents = await db.documents.find(mongo_query).sort('created_at', -1).to_list(100)
+        # Execute search with projection to exclude large file_data field
+        documents = await db.documents.find(
+            mongo_query,
+            {'file_data': 0}  # Exclude base64 file data for performance
+        ).sort('created_at', -1).limit(100).to_list(100)
         
         return documents
         
