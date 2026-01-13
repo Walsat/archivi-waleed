@@ -44,7 +44,6 @@
     },
     "plugins": [
       "expo-router",
-      "expo-sqlite",
       [
         "expo-splash-screen",
         {
@@ -64,11 +63,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "eas": {
-        "projectId": "your-project-id"
-      }
     }
   }
 }
